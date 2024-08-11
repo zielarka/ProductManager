@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  ProductManagerdb:
+    container_name: ProductManagerdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  ProductManager.api:
+    container_name: ProductManager.api
+    ports:
+      - "8000:8080"
