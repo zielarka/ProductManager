@@ -1,5 +1,6 @@
 ﻿using ProductManager.Core.Repositories;
 using ProductManager.Core.Entities;
+using ProductManager.Application.Common.Exceptions;
 
 namespace ProductManager.Application.Extensions
 {
@@ -10,7 +11,7 @@ namespace ProductManager.Application.Extensions
             var product = await repository.GetProductByNameAsync(name);
             if (product != null)
             {
-                throw new Exception($"Product with name: '{name}' already exists");
+                throw new ProductAlreadyExistsException($"Product with name: '{name}' already exists");
             }
             return product;
         }

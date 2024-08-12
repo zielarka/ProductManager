@@ -1,6 +1,9 @@
 using Asp.Versioning;
+using MediatR;
+using ProductManager.Application.Common.Behaviors;
 using ProductManager.Application.Handlers;
 using ProductManager.Core.Repositories;
+using ProductManager.Infrastructure.Middleware;
 using ProductManager.Infrastructure.Repositories;
 using System.Reflection;
 
@@ -38,6 +41,9 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Get
 //Register Application Services
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
+//Pipeline Behavior
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestExceptionHandler<,>));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,6 +52,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthorization();
 
