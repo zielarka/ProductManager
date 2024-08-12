@@ -6,4 +6,4 @@ services:
     image: ${DOCKER_REGISTRY-}Productapi
     build:
       context: .
-      dockerfile: Services/Product/Product.API/Dockerfile
+      dockerfile: src/Product/Product.API/Dockerfile
