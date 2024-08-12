@@ -7,7 +7,7 @@ namespace ProductManager.Application.Commands
     {
         public string Name { get; set; }
         public string Code { get; set; }
-        public string Price { get; set; }
+        public Decimal Price { get; set; }
 
     }
 }
