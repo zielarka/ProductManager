@@ -1,9 +1,13 @@
 version: '3.4'
 
 services:
-
-  Product.api:
-    image: ${DOCKER_REGISTRY-}Productapi
+  productmanager.api:
+  
     build:
-      context: .
-      dockerfile: Services/Product/Product.API/Dockerfile
+      context: src/Product/Product.API
+      dockerfile: Dockerfile
+    image: productmanager.api  
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

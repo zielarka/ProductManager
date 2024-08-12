@@ -1,9 +1,9 @@
 version: '3.4'
 
 services:
-  ProductManager.api:
+  productmanager.api:
     build:
-      context: ./ProductManager.Api
+      context: src/Product/Product.API
       dockerfile: Dockerfile
     ports:
       - "8080:80"
