@@ -4,11 +4,11 @@
     {
         public string Name { get; protected set; }
         public string Code { get; protected set; }
-        public Decimal Price { get; protected set; }
+        public decimal Price { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
 
-        public Product(Guid id, string name, string code, Decimal price, DateTime createdAt)
+        public Product(Guid id, string name, string code, decimal price, DateTime createdAt)
         {
             Id = id;
             SetName(name);
