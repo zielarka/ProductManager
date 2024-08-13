@@ -1,8 +1,8 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using ProductManager.Core.Entities;
+using System;
 
-namespace ProductManager.Tests.Domain
+namespace ProductManager.Tests.Entity
 {
     [TestFixture]
     public class ProductTests
@@ -104,6 +104,44 @@ namespace ProductManager.Tests.Domain
             Assert.Throws<Exception>(() => product.SetCode(""));
             Assert.Throws<Exception>(() => product.SetCode(" "));
             Assert.Throws<Exception>(() => product.SetCode(null));
+        }
+
+        [Test]
+        public void SetPrice_ShouldUpdatePriceAndUpdatedAt_WhenPriceIsGreaterThanZero()
+        {
+            // Arrange
+            var id = Guid.NewGuid();
+            var name = "Initial Product";
+            var code = "IP123";
+            var price = 10.99m;
+            var createdAt = DateTime.UtcNow;
+            var product = new Product(id, name, code, price, createdAt);
+            decimal newPrice = 150.00m;
+            DateTime beforeUpdate = product.UpdatedAt;
+
+            // Act
+            product.SetPrice(newPrice);
+
+            // Assert
+            Assert.AreEqual(newPrice, product.Price);
+            Assert.That(product.UpdatedAt, Is.GreaterThan(beforeUpdate));
+        }
+
+        [Test]
+        public void SetPrice_ShouldThrowException_WhenPriceIsZeroOrLess()
+        {
+            // Arrange
+            var id = Guid.NewGuid();
+            var name = "Initial Product";
+            var code = "IP123";
+            var price = 10.99m;
+            var createdAt = DateTime.UtcNow;
+            var product = new Product(id, name, code, price, createdAt);
+            decimal invalidPrice = 0.00m;
+
+            // Act & Assert
+            var ex = Assert.Throws<Exception>(() => product.SetPrice(invalidPrice));
+            Assert.That(ex.Message, Is.EqualTo("Price must be greater than zero."));
         }
     }
 }

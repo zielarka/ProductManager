@@ -34,7 +34,5 @@ namespace ProductManager.API.Controllers
             var result = await _mediator.Send<ProductResponse>(ProductManagerCommand);
             return Ok(result);
         }
-
-
     }
 }

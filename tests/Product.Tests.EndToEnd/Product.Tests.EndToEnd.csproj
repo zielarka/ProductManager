@@ -9,17 +9,21 @@
     <PackageReference Include="Autofac" Version="5.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="1.1.1" /> 
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="1.1.2" />
-	  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
     <PackageReference Include="FluentAssertions" Version="4.19.0" />
     <PackageReference Include="dotnet-test-nunit" Version="3.4.0-beta-3" />
+	<PackageReference Include="NUnit" Version="3.13.3" />
+	<PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
+	<PackageReference Include="Moq" Version="4.20.70" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Product\Product.Api\Product.Api.csproj" />
+    <ProjectReference Include="..\..\src\Product\Product.Application\Product.Application.csproj" />
     <ProjectReference Include="..\..\src\Product\Product.Core\Product.Core.csproj" />
     <ProjectReference Include="..\..\src\Product\Product.Infrastructure\Product.Infrastructure.csproj" />
   </ItemGroup>
