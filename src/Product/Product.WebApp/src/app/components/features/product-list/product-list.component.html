@@ -1,0 +1,29 @@
+<div class="relative m-6">
+  <div *ngIf="errorMessage; else productGrid" class="text-center text-red-500">
+    test
+  </div>
+  
+  <ng-template #productGrid>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product"
+      ></app-product-card>
+    </div>
+  </ng-template>
+
+  <app-modal
+    [isOpen]="isModalOpen"
+    [resetFormSubject]="resetFormSubject"
+    [errorMessage]="errorMessage"
+    (closeModal)="closeModal()"
+    (submitForm)="handleFormSubmit($event)"
+    class="absolute inset-0 z-50 flex items-center justify-center"
+  >
+  </app-modal>
+
+  <app-floating-button
+    (buttonClicked)="openModal()"
+    class="fixed bottom-6 right-6 z-[1000]"
+  ></app-floating-button>
+</div>
