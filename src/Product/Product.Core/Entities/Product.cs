@@ -13,7 +13,7 @@
             Id = id;
             SetName(name);
             SetCode(code);
-            Price = price;
+            SetPrice(price);
             CreatedAt = createdAt;
         }
 
@@ -35,6 +35,17 @@
             }
 
             Code = code.ToLowerInvariant();
+            UpdatedAt = DateTime.UtcNow;
+        }
+
+        public void SetPrice(decimal price)
+        {
+            if (price <= 0)
+            {
+                throw new Exception("Price must be greater than zero.");
+            }
+
+            Price = price;
             UpdatedAt = DateTime.UtcNow;
         }
     }
