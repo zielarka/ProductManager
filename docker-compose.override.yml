@@ -1,11 +1,7 @@
 version: '3.4'
 
 services:
-  productmanager.api:
-    build:
-      context: src/Product/Product.API
-      dockerfile: Dockerfile
+  product.api:
+    container_name: product.api
     ports:
-      - "8080:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - "8000:8080"

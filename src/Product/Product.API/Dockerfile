@@ -9,13 +9,16 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Services/Product/Product.API/Product.API.csproj", "Services/Product/Product.API/"]
-COPY ["Services/Product/Product.Application/Product.Application.csproj", "Services/Product/Product.Application/"]
-COPY ["Services/Product/Product.Core/Product.Core.csproj", "Services/Product/Product.Core/"]
-COPY ["Services/Product/Product.Infrastructure/Product.Infrastructure.csproj", "Services/Product/Product.Infrastructure/"]
-RUN dotnet restore "./Services/Product/Product.API/Product.API.csproj"
+COPY ["src/Product/Product.API/Product.API.csproj", "Product/Product.API/"]
+COPY ["src/Product/Product.Application/Product.Application.csproj", "Product/Product.Application/"]
+COPY ["src/Product/Product.Core/Product.Core.csproj", "Product/Product.Core/"]
+COPY ["src/Product/Product.Infrastructure/Product.Infrastructure.csproj", "Product/Product.Infrastructure/"]
+
+RUN echo "MESSAGE: Jestem tu podczas budowania obrazu"
+RUN dotnet restore "./Product/Product.API/Product.API.csproj"
+WORKDIR "/src/Product/Product.API"
 COPY . .
-WORKDIR "/src/Services/Product/Product.API"
+
 RUN dotnet build "./Product.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

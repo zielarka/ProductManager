@@ -25,7 +25,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestExceptionHandler<,>));
+
 
 builder.Services.AddCors(options =>
 {
@@ -37,6 +37,8 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod();
         });
 });
+
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestExceptionHandler<,>));
 
 var app = builder.Build();
 
